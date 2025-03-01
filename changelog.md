@@ -11,3 +11,16 @@
 - .gitignore
 - README.md
 - hook_debug.log
+## Commit: 3dfbc78d03826822da22397dfbe0d05747f5ef54
+- **Message:** fix (FDapi): because PostgreSQL isnt playing along at all
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- alembic.ini
+- alembic/README
+- alembic/__pycache__/env.cpython-39.pyc
+- alembic/env.py
+- alembic/script.py.mako
+- csv_fcts.py
+- hook_debug.log
+- mock_db.py
