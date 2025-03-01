@@ -24,3 +24,19 @@
 - csv_fcts.py
 - hook_debug.log
 - mock_db.py
+## Commit: f548d65a7365fb88104b9e8f4a6a18f12c40ed34
+- **Message:** fix (FDapi): readded old DB stuff just in case
+- **Author:** yohannesaurus
+- **Changed Files:**
+- because_postgres_is_not_playing_along/alembic.ini
+- because_postgres_is_not_playing_along/alembic/README
+- because_postgres_is_not_playing_along/alembic/__pycache__/env.cpython-39.pyc
+- because_postgres_is_not_playing_along/alembic/env.py
+- because_postgres_is_not_playing_along/alembic/script.py.mako
+- because_postgres_is_not_playing_along/connect_db.py
+- because_postgres_is_not_playing_along/csv_ingestion.py
+- because_postgres_is_not_playing_along/csv_ingestion_2.py
+- because_postgres_is_not_playing_along/database.py
+- because_postgres_is_not_playing_along/docker-compose.yml
+- because_postgres_is_not_playing_along/schema.txt
+- hook_debug.log
