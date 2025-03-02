@@ -40,3 +40,37 @@
 - because_postgres_is_not_playing_along/docker-compose.yml
 - because_postgres_is_not_playing_along/schema.txt
 - hook_debug.log
+## Commit: fafbd44bc5321fcc01ba2deda0f56e20923ddadf
+- **Message:** fix (FDapi): restructure files, split up models, redefine return models, edit log files
+- **Author:** yohannesaurus
+- **Changed Files:**
+- README.md
+- __pycache__/settings.cpython-312.pyc
+- api.py
+- api/__init__.py
+- api/__pycache__/__init__.cpython-312.pyc
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- because_postgres_is_not_playing_along/ci.yml
+- because_postgres_is_not_playing_along/truDBapi.py
+- changelog.md
+- csv_fcts.py
+- fcts/__init__.py
+- fcts/__pycache__/__init__.cpython-312.pyc
+- fcts/__pycache__/csv_fcts.cpython-312.pyc
+- fcts/__pycache__/mock_db.cpython-312.pyc
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- hook_debug.log
+- logs/changelog.md
+- logs/hook_debug.log
+- logs/mypy.log
+- mock_db.py
+- models.py
+- models/__init__.py
+- models/__pycache__/__init__.cpython-312.pyc
+- models/__pycache__/models.cpython-312.pyc
+- models/__pycache__/models_entry.cpython-312.pyc
+- models/__pycache__/models_response.cpython-312.pyc
+- models/models_entry.py
+- models/models_response.py
