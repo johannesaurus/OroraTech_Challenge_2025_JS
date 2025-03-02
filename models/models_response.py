@@ -7,10 +7,9 @@ Created on 27.02.2025
 This script contains models for typed response
 """
 
-from pydantic import BaseModel, Field
-from typing import List, Optional, Union
-from shapely.geometry import Point
-from datetime import datetime
+from pydantic import BaseModel
+from typing import List
+
 
 class Properties(BaseModel):
     """Base properties part of the response"""

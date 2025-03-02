@@ -7,7 +7,7 @@ Created on 02.03.2025
 This script contains models for typed entry
 """
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Union
 from shapely.geometry import Point
 from datetime import datetime

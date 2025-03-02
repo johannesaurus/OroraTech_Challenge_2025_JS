@@ -96,7 +96,7 @@ Confirmation message upon successful deletion.
 
 ### Example
 ```
-GET http://127.0.0.1:8080/hotspots?polygon={"coordinates":[[[-68.48242560897704,-15.539147107838772],[-68.48242560897704,-16.615626834992582],[-67.31945863367787,-16.615626834992582],[-67.31945863367787,-15.539147107838772],[-68.48242560897704,-15.539147107838772]]],"type":"Polygon"}
+GET http://127.0.0.1:8080/hotspots?polygon={"coordinates":[[[-68.48242560897704,-15.539147107838772],[-68.48242560897704,-16.615626834992582],[-67.31945863367787,-16.615626834992582],[-67.31945863367787,-15.539147107838772],[-68.48242560897704,-15.539147107838772]]],"type":"Polygon"}&start_timestamp=2023-11-16T19:13:14.364950&end_timestamp=2023-11-20T19:13:14.364950
 ```
 
 ## Development Workflow
@@ -141,12 +141,11 @@ pip install -r requirements.txt
 
 Format with black:
 ```sh
-black .
+black . > logs/black.log 2>&1
 ```
 Lint with Ruff:
 ```sh
-ruff check .
-ruff check . --fix
+ruff check . --fix > logs/ruff.log 2>&1
 ```
 
 Run MyPy:

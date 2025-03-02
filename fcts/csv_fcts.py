@@ -33,9 +33,7 @@ def read_csv_files(directory: str) -> Dict:
                     latitude = float(row["lat"])
                     longitude = float(row["lon"])
                     # geom = FeatGeometry(type="Point", coordinates=[longitude, latitude])
-                    geom = FeatGeometry(
-                        type="Point", coordinates=[longitude, latitude]
-                    )
+                    geom = FeatGeometry(type="Point", coordinates=[longitude, latitude])
 
                     data[id_counter] = {
                         "id": id_counter,
@@ -82,7 +80,7 @@ def read_mastercsv_to_dict() -> Dict:
     data = {}
     if os.path.exists(settings.MASTER_CSV):
         with open(settings.MASTER_CSV, mode="r", encoding="utf-8", newline="") as f:
-            reader = csv.DictReader(f)  
+            reader = csv.DictReader(f)
             for row in reader:
                 if not row:  # Skip empty rows
                     continue

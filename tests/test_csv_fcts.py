@@ -1,7 +1,11 @@
 import pytest
 import os
-from fcts.csv_fcts import read_csv_files, write_mockdb_to_mastercsv, read_mastercsv_to_dict
+from fcts.csv_fcts import (
+    write_mockdb_to_mastercsv,
+    read_mastercsv_to_dict,
+)
 from models.models_response import FeatGeometry
+
 
 @pytest.fixture
 def sample_data():
@@ -15,6 +19,7 @@ def sample_data():
             "geom": FeatGeometry(type="Point", coordinates=[56.78, 12.34]),
         }
     }
+
 
 def test_write_and_read_mockdb(sample_data, tmp_path):
     mock_csv = tmp_path / "mock_master.csv"
