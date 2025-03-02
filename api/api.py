@@ -13,10 +13,21 @@ import json
 from datetime import datetime
 from typing import Optional, List, Dict, Any, Tuple, cast
 
-import mock_db
-from models import IDGeoJsonResponse, SpatialGeoJsonResponse, Properties, FeatGeometry, Feature, HotspotEntry
+import fcts.mock_db as mock_db
+from models.models_response import (
+    IDGeoJsonResponse,
+    SpatialGeoJsonResponse,
+    Properties,
+    FeatGeometry
+)
+from models.models_entry import HotspotEntry
 
 app = FastAPI()
+
+
+@app.get("/")
+def read_root():
+    return {"message": "In Root"}
 
 
 def validate_polygon(polygon: str) -> Polygon:
@@ -97,18 +108,7 @@ async def get_hotspots(
     """
     if polygon:
         query_shape: Polygon = validate_polygon(polygon)
-    # elif all(param is not None for param in [min_lat, max_lat, min_lon, max_lon]):
-    #     coordinates: List[Tuple[float, float]] = [
-    #         (min_lon, min_lat),
-    #         (min_lon, max_lat),
-    #         (max_lon, max_lat),
-    #         (max_lon, min_lat),
-    #         (min_lon, min_lat),
-    #     ] if all(param is not None for param in [min_lat, max_lat, min_lon, max_lon]) else []
-
-    #     query_shape = Polygon(coordinates)
     elif all(param is not None for param in [min_lat, max_lat, min_lon, max_lon]):
-        # Cast each param to float, which is safe after the `None` check
         coordinates: List[Tuple[float, float]] = [
             (cast(float, min_lon), cast(float, min_lat)),
             (cast(float, min_lon), cast(float, max_lat)),
@@ -117,41 +117,22 @@ async def get_hotspots(
             (cast(float, min_lon), cast(float, min_lat)),
         ]
 
-        query_shape = Polygon(coordinates) 
+        query_shape = Polygon(coordinates)
     else:
-        # Handle error or fallback logic
         query_shape = Polygon()
         raise HTTPException(
             status_code=400,
             detail="You must provide either a polygon or bounding box parameters.",
         )
 
-    # filtered_detections: List[HotspotEntry] = [
-    #     detection
-    #     for detection in mock_db.data.values()
-    #     if query_shape.contains(convert_geometry_to_point(detection["geom"]))
-    #     and is_within_timestamp_range(detection, start_timestamp, end_timestamp)
-    # ]
-    # filtered_detections: List[HotspotEntry] = [
-    #     HotspotEntry.model_validate(detection)  # Convert raw dict to HotspotEntry
-    #     for detection in mock_db.data.values()
-    #     if query_shape.contains(convert_geometry_to_point(HotspotEntry.model_validate(detection).geom))
-    #     and is_within_timestamp_range(detection, start_timestamp, end_timestamp)
-    # ]
-    # filtered_detections: List[Dict[str, Any]] = [
-    #     detection.model_dump()   # Convert HotspotEntry to dict
-    #     for detection in mock_db.data.values()
-    #     if query_shape.contains(convert_geometry_to_point(detection["geom"]))
-    #     and is_within_timestamp_range(detection.model_dump() , start_timestamp, end_timestamp)
-    # ]
     filtered_detections: List[Dict[str, Any]] = [
-        detection  # Use model_dump() instead of dict() only when it's not a dictionary
+        detection
         for detection in mock_db.data.values()
         if query_shape.contains(convert_geometry_to_point(detection["geom"]))
         and is_within_timestamp_range(
-            detection if isinstance(detection, HotspotEntry) else detection, 
-            start_timestamp, 
-            end_timestamp
+            detection if isinstance(detection, HotspotEntry) else detection,
+            start_timestamp,
+            end_timestamp,
         )
     ]
 
@@ -162,7 +143,7 @@ async def get_hotspots(
         {
             "type": "Feature",
             "geometry": detection["geom"],
-            "properties": Properties(**detection),
+            #"properties": Properties(**detection),
         }
         for detection in filtered_detections
     ]
@@ -184,16 +165,21 @@ async def get_hotspots(
     # features = [Feature(**feature_dict) for feature_dict in feature_dicts]
     # return SpatialGeoJsonResponse(type="FeatureCollection", features=features)
 
+
 @app.get("/hotspots/{id}", response_model=IDGeoJsonResponse)
 async def get_hotspot_by_id(id: int) -> IDGeoJsonResponse:
     """Retrieve a fire detection by ID."""
     detection: Optional[Dict[str, Any]] = mock_db.get_hotspot(id)
-    result = mock_db.get_hotspot(id).model_dump()  if mock_db.get_hotspot(id) is not None else None  # Convert to dict if not None
+    result = (
+        mock_db.get_hotspot(id).model_dump()
+        if mock_db.get_hotspot(id) is not None
+        else None
+    )  # Convert to dict if not None
 
     if not detection:
         raise HTTPException(status_code=404, detail="Hotspot not found")
     return IDGeoJsonResponse(
-        type="Feature", geometry=detection["geom"], properties=Properties(**detection)
+        type="Feature", geometry=detection["geom"]#, properties=Properties(**detection)
     )
 
 

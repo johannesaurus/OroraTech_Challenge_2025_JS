@@ -1,0 +1,76 @@
+## Commit: c3627aa13816a7a4802cc5b86b1fad1add678805
+- **Message:** feat (FDapi): add requirements, gitignore
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- requirements.txt
+## Commit: 9a9fb9637dd227cf6807f60759f637a25859ddad
+- **Message:** feat (FDapi): add commit hook, update readme, create working branch
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- README.md
+- hook_debug.log
+## Commit: 3dfbc78d03826822da22397dfbe0d05747f5ef54
+- **Message:** fix (FDapi): because PostgreSQL isnt playing along at all
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- alembic.ini
+- alembic/README
+- alembic/__pycache__/env.cpython-39.pyc
+- alembic/env.py
+- alembic/script.py.mako
+- csv_fcts.py
+- hook_debug.log
+- mock_db.py
+## Commit: f548d65a7365fb88104b9e8f4a6a18f12c40ed34
+- **Message:** fix (FDapi): readded old DB stuff just in case
+- **Author:** yohannesaurus
+- **Changed Files:**
+- because_postgres_is_not_playing_along/alembic.ini
+- because_postgres_is_not_playing_along/alembic/README
+- because_postgres_is_not_playing_along/alembic/__pycache__/env.cpython-39.pyc
+- because_postgres_is_not_playing_along/alembic/env.py
+- because_postgres_is_not_playing_along/alembic/script.py.mako
+- because_postgres_is_not_playing_along/connect_db.py
+- because_postgres_is_not_playing_along/csv_ingestion.py
+- because_postgres_is_not_playing_along/csv_ingestion_2.py
+- because_postgres_is_not_playing_along/database.py
+- because_postgres_is_not_playing_along/docker-compose.yml
+- because_postgres_is_not_playing_along/schema.txt
+- hook_debug.log
+## Commit: fafbd44bc5321fcc01ba2deda0f56e20923ddadf
+- **Message:** fix (FDapi): restructure files, split up models, redefine return models, edit log files
+- **Author:** yohannesaurus
+- **Changed Files:**
+- README.md
+- __pycache__/settings.cpython-312.pyc
+- api.py
+- api/__init__.py
+- api/__pycache__/__init__.cpython-312.pyc
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- because_postgres_is_not_playing_along/ci.yml
+- because_postgres_is_not_playing_along/truDBapi.py
+- changelog.md
+- csv_fcts.py
+- fcts/__init__.py
+- fcts/__pycache__/__init__.cpython-312.pyc
+- fcts/__pycache__/csv_fcts.cpython-312.pyc
+- fcts/__pycache__/mock_db.cpython-312.pyc
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- hook_debug.log
+- logs/changelog.md
+- logs/hook_debug.log
+- logs/mypy.log
+- mock_db.py
+- models.py
+- models/__init__.py
+- models/__pycache__/__init__.cpython-312.pyc
+- models/__pycache__/models.cpython-312.pyc
+- models/__pycache__/models_entry.cpython-312.pyc
+- models/__pycache__/models_response.cpython-312.pyc
+- models/models_entry.py
+- models/models_response.py

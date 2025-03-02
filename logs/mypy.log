@@ -1,0 +1,7 @@
+api\api.py:150: error: List comprehension has incompatible type List[HotspotEntry]; expected List[dict[str, Any]]  [misc]
+api\api.py:152: error: Value of type "HotspotEntry" is not indexable  [index]
+api\api.py:154: error: Argument 1 to "is_within_timestamp_range" has incompatible type "HotspotEntry"; expected "dict[str, Any]"  [arg-type]
+api\api.py:172: error: Argument "features" to "SpatialGeoJsonResponse" has incompatible type "list[dict[str, Any]]"; expected "list[Feature]"  [arg-type]
+api\api.py:192: error: Incompatible types in assignment (expression has type "HotspotEntry | None", variable has type "dict[str, Any] | None")  [assignment]
+api\api.py:193: error: Item "None" of "HotspotEntry | None" has no attribute "model_dump"  [union-attr]
+Found 6 errors in 1 file (checked 8 source files)

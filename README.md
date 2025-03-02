@@ -36,11 +36,13 @@ This FastAPI-based project provides an API for retrieving and managing wildfire 
    ```sh
    pip install -r requirements.txt
    ```
+   (pip freeze > requirements.txt)
 
 ## Running the API
 To start the FastAPI server, run:
 ```sh
-uvicorn api:app --host 0.0.0.0 --port 8080 --reload
+uvicorn api.api:app --host 0.0.0.0 --port 8080 --reload
+
 ```
 By default, the API will be available at:
 - Swagger UI: [http://127.0.0.1:8080/docs](http://127.0.0.1:8080/docs)
@@ -92,8 +94,71 @@ DELETE /hotspots/remove?id={id}
 **Response:**
 Confirmation message upon successful deletion.
 
+### Example
+```
+GET http://127.0.0.1:8080/hotspots?polygon={"coordinates":[[[-68.48242560897704,-15.539147107838772],[-68.48242560897704,-16.615626834992582],[-67.31945863367787,-16.615626834992582],[-67.31945863367787,-15.539147107838772],[-68.48242560897704,-15.539147107838772]]],"type":"Polygon"}
+```
+
+## Development Workflow
+### Branching Strategy
+This project follows a structured branching strategy:
+- `main`: Stable branch for major version releases.
+- `working`: Active development branch where updates and fixes are merged before going to `main`.
+- `fix/*`: Feature/fix branches created for specific changes, merged into `working` before final deployment.
+
+### Creating a Pull Request (PR)
+1. **Create a feature/fix branch:**
+   ```sh
+   git checkout -b fix/bug-description
+   ```
+2. **Make changes and commit:**
+   ```sh
+   git add .
+   git commit -m "Fix: resolved bug in hotspot retrieval"
+   ```
+3. **Push the branch:**
+   ```sh
+   git push origin fix/bug-description
+   ```
+4. **Open a PR on GitHub:**
+   - Go to the repository.
+   - Click "Compare & pull request".
+   - Set base as `working`, add a description, and submit.
+   - Request a review and merge upon approval.
+5. **Merge `working` into `main` for major releases:**
+   ```sh
+   git checkout main
+   git merge working
+   git push origin main
+   ```
+
+## Notes
+Create/Run requirements.txt:
+```sh
+pip freeze > requirements.txt
+pip install -r requirements.txt
+```
+
+Format with black:
+```sh
+black .
+```
+Lint with Ruff:
+```sh
+ruff check .
+ruff check . --fix
+```
+
+
+Run MyPy:
+```sh
+mypy . --exclude "because_postgres_is_not_playing_along|data|logs|other" > logs/mypy.log 2>&1
+```
+
+
 ## License
 NA
+
 
 ## Author
 Johannes Seelig
