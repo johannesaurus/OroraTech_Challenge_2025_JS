@@ -122,3 +122,20 @@
 - tests/test_api.py
 - tests/test_csv_fcts.py
 - tests/test_mock_db.py
+## Commit: 1cd08de06699ff01ac9de4f14873287197840d6a
+- **Message:** fix (FDapi): formatting and cleanliness
+- **Author:** yohannesaurus
+- **Changed Files:**
+- README.md
+- api/api.py
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- logs/black.log
+- logs/hook_debug.log
+- logs/ruff.log
+- models/models_entry.py
+- models/models_response.py
+- requirements.txt
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_mock_db.py
