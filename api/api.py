@@ -59,13 +59,13 @@ def is_within_timestamp_range(
 
 
 def convert_point_to_geometry(point: Point) -> FeatGeometry:
-    return FeatGeometry(type="Point", coordinates=[[point.x, point.y]])
+    return FeatGeometry(type="Point", coordinates=[point.x, point.y])
 
 
 def convert_geometry_to_point(geometry: FeatGeometry) -> Point:
     """Convert a FeatGeometry object to a Point."""
     # Assuming the coordinates are in the format: [[longitude, latitude]]
-    longitude, latitude = geometry.coordinates[0]
+    longitude, latitude = geometry.coordinates
     return Point(longitude, latitude)
 
 
@@ -143,7 +143,7 @@ async def get_hotspots(
         {
             "type": "Feature",
             "geometry": detection["geom"],
-            #"properties": Properties(**detection),
+            "properties": {}#Properties(**detection),
         }
         for detection in filtered_detections
     ]
@@ -179,7 +179,7 @@ async def get_hotspot_by_id(id: int) -> IDGeoJsonResponse:
     if not detection:
         raise HTTPException(status_code=404, detail="Hotspot not found")
     return IDGeoJsonResponse(
-        type="Feature", geometry=detection["geom"]#, properties=Properties(**detection)
+        type="Feature", geometry=detection["geom"], properties={}#Properties(**detection)
     )
 
 

@@ -34,7 +34,7 @@ def read_csv_files(directory: str) -> Dict:
                     longitude = float(row["lon"])
                     # geom = FeatGeometry(type="Point", coordinates=[longitude, latitude])
                     geom = FeatGeometry(
-                        type="Point", coordinates=[[longitude, latitude]]
+                        type="Point", coordinates=[longitude, latitude]
                     )
 
                     data[id_counter] = {
@@ -87,7 +87,7 @@ def read_mastercsv_to_dict() -> Dict:
                 id_ = int(row["id"])
                 geom = FeatGeometry(
                     type="Point",
-                    coordinates=[[float(row["longitude"]), float(row["latitude"])]],
+                    coordinates=[float(row["longitude"]), float(row["latitude"])],
                 )
 
                 data[id_] = {
