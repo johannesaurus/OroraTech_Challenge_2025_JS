@@ -139,3 +139,9 @@
 - tests/test_api.py
 - tests/test_csv_fcts.py
 - tests/test_mock_db.py
+## Commit: 0dabed4fcbc9a46a3cb56914218d2a4edf9f230e
+- **Message:** fix (FDapi): pulled yml created in git cus it didnt want to read mine, also rebase didnt work but merge commit did so .. ¯\_(._.)_/¯
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- logs/hook_debug.log
