@@ -86,3 +86,39 @@
 - models/__pycache__/models_response.cpython-312.pyc
 - models/models_response.py
 - tests/test_api.py
+## Commit: d771cd98dff6df1502f0bba64bedb5b74ce19f51
+- **Message:** feat (FDapi): add unit testing w pytest
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .coverage
+- .gitignore
+- README.md
+- __pycache__/settings.cpython-312.pyc
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- because_postgres_is_not_playing_along/alembic.ini
+- because_postgres_is_not_playing_along/alembic/README
+- because_postgres_is_not_playing_along/alembic/__pycache__/env.cpython-39.pyc
+- because_postgres_is_not_playing_along/alembic/env.py
+- because_postgres_is_not_playing_along/alembic/script.py.mako
+- because_postgres_is_not_playing_along/ci.yml
+- because_postgres_is_not_playing_along/connect_db.py
+- because_postgres_is_not_playing_along/csv_ingestion.py
+- because_postgres_is_not_playing_along/csv_ingestion_2.py
+- because_postgres_is_not_playing_along/database.py
+- because_postgres_is_not_playing_along/docker-compose.yml
+- because_postgres_is_not_playing_along/schema.txt
+- because_postgres_is_not_playing_along/truDBapi.py
+- fcts/__pycache__/csv_fcts.cpython-312.pyc
+- fcts/__pycache__/mock_db.cpython-312.pyc
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- logs/hook_debug.log
+- logs/pytest.log
+- settings.py
+- tests/__pycache__/test_api.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_csv_fcts.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_mock_db.cpython-312-pytest-8.3.5.pyc
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_mock_db.py
