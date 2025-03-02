@@ -12,21 +12,6 @@ from typing import List, Optional, Union
 from shapely.geometry import Point
 from datetime import datetime
 
-
-class HotspotEntry(BaseModel):
-    """Single Hotspot Class"""
-
-    id: int
-    latitude: float
-    longitude: float
-    timestamp_start: datetime
-    timestamp_end: datetime
-    geom: Union[Point, dict]
-
-    class Config:
-        arbitrary_types_allowed = True
-
-
 class Properties(BaseModel):
     """Base properties part of the response"""
 
@@ -55,7 +40,7 @@ class Feature(BaseModel):
 
     type: str
     geometry: FeatGeometry
-    properties: Properties
+    #properties: Properties
 
 
 class IDGeoJsonResponse(BaseModel):
@@ -63,7 +48,7 @@ class IDGeoJsonResponse(BaseModel):
 
     type: str
     geometry: List[List[float]]
-    properties: Properties
+    # properties: Properties
 
 
 class SpatialGeoJsonResponse(BaseModel):

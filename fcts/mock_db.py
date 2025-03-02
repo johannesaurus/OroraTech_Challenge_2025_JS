@@ -13,8 +13,8 @@ import csv
 from datetime import datetime
 
 import settings
-import csv_fcts
-from models import HotspotEntry
+import fcts.csv_fcts as csv_fcts
+from models.models_entry import HotspotEntry
 from typing import Dict, Optional
 
 # Initialize data store

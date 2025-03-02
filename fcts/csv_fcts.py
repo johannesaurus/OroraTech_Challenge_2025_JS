@@ -12,7 +12,7 @@ import csv
 from datetime import datetime
 
 import settings
-from models import FeatGeometry
+from models.models_response import FeatGeometry
 from typing import Dict
 
 
@@ -33,7 +33,9 @@ def read_csv_files(directory: str) -> Dict:
                     latitude = float(row["lat"])
                     longitude = float(row["lon"])
                     # geom = FeatGeometry(type="Point", coordinates=[longitude, latitude])
-                    geom = FeatGeometry(type="Point", coordinates=[[longitude, latitude]])
+                    geom = FeatGeometry(
+                        type="Point", coordinates=[[longitude, latitude]]
+                    )
 
                     data[id_counter] = {
                         "id": id_counter,

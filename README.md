@@ -41,7 +41,8 @@ This FastAPI-based project provides an API for retrieving and managing wildfire 
 ## Running the API
 To start the FastAPI server, run:
 ```sh
-uvicorn api:app --host 0.0.0.0 --port 8080 --reload
+uvicorn api.api:app --host 0.0.0.0 --port 8080 --reload
+
 ```
 By default, the API will be available at:
 - Swagger UI: [http://127.0.0.1:8080/docs](http://127.0.0.1:8080/docs)
@@ -93,6 +94,10 @@ DELETE /hotspots/remove?id={id}
 **Response:**
 Confirmation message upon successful deletion.
 
+### Example
+```
+GET http://127.0.0.1:8080/hotspots?polygon={"coordinates":[[[-68.48242560897704,-15.539147107838772],[-68.48242560897704,-16.615626834992582],[-67.31945863367787,-16.615626834992582],[-67.31945863367787,-15.539147107838772],[-68.48242560897704,-15.539147107838772]]],"type":"Polygon"}
+```
 
 ## Development Workflow
 ### Branching Strategy
@@ -126,6 +131,30 @@ This project follows a structured branching strategy:
    git merge working
    git push origin main
    ```
+
+## Notes
+Create/Run requirements.txt:
+```sh
+pip freeze > requirements.txt
+pip install -r requirements.txt
+```
+
+Format with black:
+```sh
+black .
+```
+Lint with Ruff:
+```sh
+ruff check .
+ruff check . --fix
+```
+
+
+Run MyPy:
+```sh
+mypy . --exclude "because_postgres_is_not_playing_along|data|logs|other" > logs/mypy.log 2>&1
+```
+
 
 ## License
 NA
