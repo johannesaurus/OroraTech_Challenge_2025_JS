@@ -13,7 +13,8 @@ import json
 from datetime import datetime
 from typing import Optional, List, Dict, Any, Tuple, cast
 
-import fcts.mock_db as mock_db
+# import fcts.mock_db as mock_db
+from fcts.mock_db import data
 from models.models_response import (
     IDGeoJsonResponse,
     SpatialGeoJsonResponse,
@@ -49,8 +50,8 @@ def is_within_timestamp_range(
 ) -> bool:
     """Compare detection timestamps with user-specified range."""
     if start_timestamp and end_timestamp:
-        detection_start: datetime = datetime.fromisoformat(detection["timestamp_start"])
-        detection_end: datetime = datetime.fromisoformat(detection["timestamp_end"])
+        detection_start: datetime = datetime.fromisoformat(str(detection["timestamp_start"]))
+        detection_end: datetime = datetime.fromisoformat(str(detection["timestamp_end"]))
         return (
             start_timestamp <= detection_start <= end_timestamp
             or start_timestamp <= detection_end <= end_timestamp
@@ -106,6 +107,7 @@ async def get_hotspots(
     The user should send polygon as GeoJSON polygon format
     OR Convert bounding box: shapely geometry to GeoJSON
     """
+    print('SEts',start_timestamp,end_timestamp)
     if polygon:
         query_shape: Polygon = validate_polygon(polygon)
     elif all(param is not None for param in [min_lat, max_lat, min_lon, max_lon]):
@@ -125,9 +127,14 @@ async def get_hotspots(
             detail="You must provide either a polygon or bounding box parameters.",
         )
 
+    
+    print('Qs',query_shape)
+    print('mdD',data.values())
+    # for detection in data.values():
+    #     print('D',detection)
     filtered_detections: List[Dict[str, Any]] = [
         detection
-        for detection in mock_db.data.values()
+        for detection in data.values()
         if query_shape.contains(convert_geometry_to_point(detection["geom"]))
         and is_within_timestamp_range(
             detection if isinstance(detection, HotspotEntry) else detection,

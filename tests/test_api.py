@@ -25,7 +25,7 @@ def setup_mock_db():
             "longitude": 13.405,
             "timestamp_start": "2025-02-27T12:00:00",
             "timestamp_end": "2025-02-27T14:00:00",
-            "geom": {"type": "Point", "coordinates": [[13.405, 52.52]]}
+            "geom": {"type": "Point", "coordinates": [13.405, 52.52]}
         }
     }
     yield

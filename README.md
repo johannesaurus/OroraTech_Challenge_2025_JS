@@ -149,12 +149,16 @@ ruff check .
 ruff check . --fix
 ```
 
-
 Run MyPy:
 ```sh
 mypy . --exclude "because_postgres_is_not_playing_along|data|logs|other" > logs/mypy.log 2>&1
 ```
 
+Run PyTest + create log and html:
+```sh
+set PYTHONPATH=.
+pytest --cov=api --cov=fcts --cov=models --cov-report=html:logs/coverage_html > logs/pytest.log 2>&1
+```
 
 ## License
 NA

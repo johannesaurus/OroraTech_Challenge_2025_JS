@@ -81,9 +81,11 @@ def read_mastercsv_to_dict() -> Dict:
     """Reads the master CSV file into a dictionary."""
     data = {}
     if os.path.exists(settings.MASTER_CSV):
-        with open(settings.MASTER_CSV, mode="r") as f:
-            reader = csv.DictReader(f)
+        with open(settings.MASTER_CSV, mode="r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)  
             for row in reader:
+                if not row:  # Skip empty rows
+                    continue
                 id_ = int(row["id"])
                 geom = FeatGeometry(
                     type="Point",

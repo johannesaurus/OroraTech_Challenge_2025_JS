@@ -27,7 +27,6 @@ if not os.path.exists(settings.MASTER_CSV):
 else:
     data = csv_fcts.read_mastercsv_to_dict()
 
-
 def get_hotspot(id: int) -> Optional[HotspotEntry]:
     """Returns a hotspot based on ID."""
     return data.get(id)
