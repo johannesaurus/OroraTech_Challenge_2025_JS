@@ -74,3 +74,15 @@
 - models/__pycache__/models_response.cpython-312.pyc
 - models/models_entry.py
 - models/models_response.py
+## Commit: 6169b7a2ff9cf07b837c7095bf888ecaf9ec5a41
+- **Message:** fix (FDapi): refator return to just lat/lon
+- **Author:** yohannesaurus
+- **Changed Files:**
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- fcts/__pycache__/csv_fcts.cpython-312.pyc
+- fcts/csv_fcts.py
+- logs/hook_debug.log
+- models/__pycache__/models_response.cpython-312.pyc
+- models/models_response.py
+- tests/test_api.py
