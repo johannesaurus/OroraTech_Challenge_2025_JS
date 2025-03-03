@@ -41,15 +41,6 @@ class Feature(BaseModel):
     geometry: FeatGeometry
     properties: Properties
 
-
-class IDGeoJsonResponse(BaseModel):
-    """Base Model for typed response for search-by-ID"""
-
-    type: str
-    geometry: List[float]
-    properties: Properties
-
-
 class SpatialGeoJsonResponse(BaseModel):
     """Base Model for typed response for search-by-Spatial"""
 

@@ -11,6 +11,11 @@ This FastAPI-based project provides an API for retrieving and managing wildfire 
 - Delete wildfire detections.
 
 ## Changelog
+
+### v 0.0.2.
+- Release Date: 2025.03.03
+- Switch from mockDB to SQLite
+
 ### v 0.0.1
 - Release Date: 2025.03.01
 - Initial push
@@ -96,7 +101,7 @@ Confirmation message upon successful deletion.
 
 ### Example
 ```
-GET http://127.0.0.1:8080/hotspots?polygon={"coordinates":[[[-68.48242560897704,-15.539147107838772],[-68.48242560897704,-16.615626834992582],[-67.31945863367787,-16.615626834992582],[-67.31945863367787,-15.539147107838772],[-68.48242560897704,-15.539147107838772]]],"type":"Polygon"}&start_timestamp=2023-11-16T19:13:14.364950&end_timestamp=2023-11-20T19:13:14.364950
+http://127.0.0.1:8080/hotspots?polygon={"coordinates":[[[-68.48242560897704,-15.539147107838772],[-68.48242560897704,-16.615626834992582],[-67.31945863367787,-16.615626834992582],[-67.31945863367787,-15.539147107838772],[-68.48242560897704,-15.539147107838772]]],"type":"Polygon"}&start_timestamp=2023-11-16T19:13:14.364950&end_timestamp=2023-11-20T19:13:14.364950
 ```
 
 ## Development Workflow
@@ -157,6 +162,11 @@ Run PyTest + create log and html:
 ```sh
 set PYTHONPATH=.
 pytest --cov=api --cov=fcts --cov=models --cov-report=html:logs/coverage_html > logs/pytest.log 2>&1
+```
+DB: creates fire_detections.db
+```sh
+python models/model_db.py (inits db)
+python fcts/load_csv.py (fills db)
 ```
 
 ## License

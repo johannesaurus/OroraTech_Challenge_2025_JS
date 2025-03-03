@@ -1,222 +1,118 @@
 """
 Created on 2025.02.27
+Edited on 2025.03.03
 
 @Title: OroraTech Wildfire Tech Challenge - api
 @author: jseelig
 
 This script contains api calls
 """
-
-from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, Query, HTTPException, Depends
+from sqlalchemy.orm import Session
 from shapely.geometry import Polygon, Point
+from sqlalchemy import or_
+
 import json
 from datetime import datetime
-from typing import Optional, List, Dict, Any, Tuple, cast
+from typing import Optional
 
-import fcts.mock_db as mock_db
-from fcts.mock_db import data
-from models.models_response import (
-    IDGeoJsonResponse,
-    SpatialGeoJsonResponse,
-    FeatGeometry,
-)
-from models.models_entry import HotspotEntry
+from models.model_db import SessionLocal, FireDetection
+from models.models_response import SpatialGeoJsonResponse, FeatGeometry,Feature
 
 app = FastAPI()
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 @app.get("/")
 def read_root():
     return {"message": "In Root"}
 
-
 def validate_polygon(polygon: str) -> Polygon:
-    """Validate and parse the polygon input."""
     try:
-        geojson: Dict[str, Any] = json.loads(polygon)
-        coords: Optional[List[List[List[float]]]] = geojson.get("coordinates")
+        geojson = json.loads(polygon)
+        coords = geojson.get("coordinates")
         if not coords:
             raise ValueError("No coordinates found in the polygon")
         return Polygon(coords[0])
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid polygon format: {str(e)}")
 
-
-def is_within_timestamp_range(
-    detection: Dict[str, Any],
-    start_timestamp: Optional[datetime],
-    end_timestamp: Optional[datetime],
-) -> bool:
-    """Compare detection timestamps with user-specified range."""
-    if start_timestamp and end_timestamp:
-        detection_start: datetime = datetime.fromisoformat(
-            str(detection["timestamp_start"])
-        )
-        detection_end: datetime = datetime.fromisoformat(
-            str(detection["timestamp_end"])
-        )
-        return (
-            start_timestamp <= detection_start <= end_timestamp
-            or start_timestamp <= detection_end <= end_timestamp
-        )
-    return True  # No filtering by default
-
-
-def convert_point_to_geometry(point: Point) -> FeatGeometry:
-    return FeatGeometry(type="Point", coordinates=[point.x, point.y])
-
-
-def convert_geometry_to_point(geometry: FeatGeometry) -> Point:
-    """Convert a FeatGeometry object to a Point."""
-    # Assuming the coordinates are in the format: [[longitude, latitude]]
-    longitude, latitude = geometry.coordinates
-    return Point(longitude, latitude)
-
-
-async def get_db() -> None:
-    """
-    Dependency for database session (for compatibility, though mock_db doesn't need it)
-    Mock DB does not require a session
-    """
-    return None
-
-
 @app.get("/hotspots", response_model=SpatialGeoJsonResponse)
-async def get_hotspots(
-    polygon: Optional[str] = Query(
-        None, description="GeoJSON Polygon geometry as a string"
-    ),
-    min_lat: Optional[float] = Query(
-        None, description="Minimum latitude (for bounding box)"
-    ),
-    max_lat: Optional[float] = Query(
-        None, description="Maximum latitude (for bounding box)"
-    ),
-    min_lon: Optional[float] = Query(
-        None, description="Minimum longitude (for bounding box)"
-    ),
-    max_lon: Optional[float] = Query(
-        None, description="Maximum longitude (for bounding box)"
-    ),
-    start_timestamp: Optional[datetime] = Query(
-        None, description="Filter by start timestamp (ISO format)"
-    ),
-    end_timestamp: Optional[datetime] = Query(
-        None, description="Filter by end timestamp (ISO format)"
-    ),
-) -> SpatialGeoJsonResponse:
-    """
-    Endpoint to get fire detections within a polygon/bounding box + opt:Timestamp
-    The user should send polygon as GeoJSON polygon format
-    OR Convert bounding box: shapely geometry to GeoJSON
-    """
-    print("SEts", start_timestamp, end_timestamp)
+def get_hotspots(
+    db: Session = Depends(get_db),
+    polygon: Optional[str] = Query(None, description="GeoJSON Polygon geometry as a string"),
+    min_lat: Optional[float] = Query(None, description="Minimum latitude"),
+    max_lat: Optional[float] = Query(None, description="Maximum latitude"),
+    min_lon: Optional[float] = Query(None, description="Minimum longitude"),
+    max_lon: Optional[float] = Query(None, description="Maximum longitude"),
+    start_timestamp: Optional[datetime] = Query(None, description="Filter by start timestamp"),
+    end_timestamp: Optional[datetime] = Query(None, description="Filter by end timestamp"),
+):
+    query = db.query(FireDetection)
+
+    if start_timestamp and end_timestamp:
+        query = query.filter(
+            or_(
+                FireDetection.timestamp_start.between(start_timestamp, end_timestamp),
+                FireDetection.timestamp_end.between(start_timestamp, end_timestamp)
+            )
+        )
+
+    if all(param is not None for param in [min_lat, max_lat, min_lon, max_lon]):
+        query = query.filter(FireDetection.latitude.between(min_lat, max_lat), FireDetection.longitude.between(min_lon, max_lon))
+    
+    detections = query.all()
+    
     if polygon:
-        query_shape: Polygon = validate_polygon(polygon)
-    elif all(param is not None for param in [min_lat, max_lat, min_lon, max_lon]):
-        coordinates: List[Tuple[float, float]] = [
-            (cast(float, min_lon), cast(float, min_lat)),
-            (cast(float, min_lon), cast(float, max_lat)),
-            (cast(float, max_lon), cast(float, max_lat)),
-            (cast(float, max_lon), cast(float, min_lat)),
-            (cast(float, min_lon), cast(float, min_lat)),
-        ]
-
-        query_shape = Polygon(coordinates)
-    else:
-        query_shape = Polygon()
-        raise HTTPException(
-            status_code=400,
-            detail="You must provide either a polygon or bounding box parameters.",
-        )
-
-    print("Qs", query_shape)
-    print("mdD", data.values())
-    # for detection in data.values():
-    #     print('D',detection)
-    filtered_detections: List[Dict[str, Any]] = [
-        detection
-        for detection in data.values()
-        if query_shape.contains(convert_geometry_to_point(detection["geom"]))
-        and is_within_timestamp_range(
-            detection if isinstance(detection, HotspotEntry) else detection,
-            start_timestamp,
-            end_timestamp,
-        )
-    ]
-
-    if not filtered_detections:
+        polygon_shape = validate_polygon(polygon)
+        detections = [d for d in detections if polygon_shape.contains(Point(d.longitude, d.latitude))]
+    
+    if not detections:
         raise HTTPException(status_code=404, detail="No hotspots found")
-
-    features: List[Dict[str, Any]] = [
-        {
-            "type": "Feature",
-            "geometry": detection["geom"],
-            "properties": {},  # Properties(**detection),
-        }
-        for detection in filtered_detections
-    ]
-
+    
+    features = [{
+        "type": "Feature",
+        "geometry": FeatGeometry(type="Point", coordinates=[d.longitude, d.latitude]),
+        "properties": {}
+    } for d in detections]
     return SpatialGeoJsonResponse(type="FeatureCollection", features=features)
-    # feature_dicts = [
-    #     {
-    #         "type": "Feature",  # Assuming you want to label all as "Feature"
-    #         "geometry": detection.get("geometry"),  # Adjust according to actual field names
-    #         "properties": {
-    #             "id": detection.get("id"),
-    #             "latitude": detection.get("latitude"),
-    #             "longitude": detection.get("longitude"),
-    #             # Add other properties as necessary
-    #         },
-    #     }
-    #     for detection in filtered_detections
-    # ]
-    # features = [Feature(**feature_dict) for feature_dict in feature_dicts]
-    # return SpatialGeoJsonResponse(type="FeatureCollection", features=features)
 
-
-@app.get("/hotspots/{id}", response_model=IDGeoJsonResponse)
-async def get_hotspot_by_id(id: int) -> IDGeoJsonResponse:
-    """Retrieve a fire detection by ID."""
-    detection: Optional[Dict[str, Any]] = mock_db.get_hotspot(id)
-    # result = (
-    #     mock_db.get_hotspot(id).model_dump()
-    #     if mock_db.get_hotspot(id) is not None
-    #     else None
-    # )  # Convert to dict if not None
-
+@app.get("/hotspots/{id}", response_model=Feature)
+def get_hotspot_by_id(id: int, db: Session = Depends(get_db)):
+    detection = db.query(FireDetection).filter(FireDetection.id == id).first()
     if not detection:
         raise HTTPException(status_code=404, detail="Hotspot not found")
-    return IDGeoJsonResponse(
+    return Feature(
         type="Feature",
-        geometry=detection["geom"],
-        properties={},  # Properties(**detection)
+        geometry=FeatGeometry(type="Point", coordinates=[detection.longitude, detection.latitude]),
+        properties={}
     )
 
-
-@app.post("/hotspots/add", response_model=Dict[str, str])
-async def add_new_hotspot(
+@app.post("/hotspots/add")
+def add_new_hotspot(
     latitude: float,
     longitude: float,
     timestamp_start: datetime,
     timestamp_end: datetime,
-) -> Dict[str, str]:
-    """Endpoint to add a fire detection"""
-    new_id: int = mock_db.get_next_hotspot_id()
-    mock_db.add_hotspot(
-        new_id,
-        latitude,
-        longitude,
-        timestamp_start.isoformat(),
-        timestamp_end.isoformat(),
-    )
-    return {"message": f"Hotspot with ID {new_id} added successfully"}
+    db: Session = Depends(get_db)
+):
+    new_fire = FireDetection(latitude=latitude, longitude=longitude, timestamp_start=timestamp_start, timestamp_end=timestamp_end)
+    db.add(new_fire)
+    db.commit()
+    db.refresh(new_fire)
+    return {"message": f"Hotspot with ID {new_fire.id} added successfully"}
 
-
-@app.delete("/hotspots/remove", response_model=Dict[str, str])
-async def delete_hotspot_by_id(
-    id: int = Query(..., description="ID of the hotspot to remove"),
-) -> Dict[str, str]:
-    """Delete a fire detection by ID."""
-    mock_db.delete_hotspot(id)
+@app.delete("/hotspots/remove")
+def delete_hotspot_by_id(id: int, db: Session = Depends(get_db)):
+    detection = db.query(FireDetection).filter(FireDetection.id == id).first()
+    if not detection:
+        raise HTTPException(status_code=404, detail="Hotspot not found")
+    db.delete(detection)
+    db.commit()
     return {"message": f"Hotspot with ID {id} deleted successfully"}
+

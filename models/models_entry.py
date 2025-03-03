@@ -21,7 +21,7 @@ class HotspotEntry(BaseModel):
     longitude: float
     timestamp_start: datetime
     timestamp_end: datetime
-    geom: Union[Point, dict]
+    # geom: Union[Point, dict]
 
     class Config:
         arbitrary_types_allowed = True
