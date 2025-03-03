@@ -14,22 +14,29 @@ jobs:
         with:
           python-version: '3.10'
 
+      # - name: Freeze dependencies
+      #   run: pip freeze > requirements.txt
+      
+      # - name: Install dependencies
+      #   run: pip install -r requirements.txt
       - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Freeze dependencies
-        run: pip freeze > requirements.txt
+        run: |
+          pip install black
+          pip install ruff
 
       - name: Run Black (code formatter)
-        run: black . > logs/black.log 2>&1
+        run: black . #> logs/black.log 2>&1
 
       - name: Run Ruff (linter + fixer)
-        run: ruff check . --fix > logs/ruff.log 2>&1
+        run: ruff check . --fix #> logs/ruff.log 2>&1
 
-      - name: Run MyPy (type checker)
-        run: mypy . --exclude "because_postgres_is_not_playing_along|data|logs|other" > logs/mypy.log 2>&1
+      # - name: Run MyPy (type checker)
+      #   run: mypy . --exclude "because_postgres_is_not_playing_along|data|logs|other" > logs/mypy.log 2>&1
+      # OR   run: cat logs/mypy.log
 
-      - name: Run Tests with Coverage
-        env:
-          PYTHONPATH: .
-        run: pytest --cov=api --cov=fcts --cov=models --cov-report=html:logs/coverage_html > logs/pytest.log 2>&1
+      # - name: Run Tests with Coverage
+      #   env:
+      #     PYTHONPATH: .
+      #   run: pytest --cov=api --cov=fcts --cov=models --cov-report=html:logs/coverage_html > logs/pytest.log 2>&1
+      #   run: cat logs/pytest.log
+

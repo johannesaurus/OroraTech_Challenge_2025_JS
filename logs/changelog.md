@@ -74,3 +74,188 @@
 - models/__pycache__/models_response.cpython-312.pyc
 - models/models_entry.py
 - models/models_response.py
+## Commit: 6169b7a2ff9cf07b837c7095bf888ecaf9ec5a41
+- **Message:** fix (FDapi): refator return to just lat/lon
+- **Author:** yohannesaurus
+- **Changed Files:**
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- fcts/__pycache__/csv_fcts.cpython-312.pyc
+- fcts/csv_fcts.py
+- logs/hook_debug.log
+- models/__pycache__/models_response.cpython-312.pyc
+- models/models_response.py
+- tests/test_api.py
+## Commit: d771cd98dff6df1502f0bba64bedb5b74ce19f51
+- **Message:** feat (FDapi): add unit testing w pytest
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .coverage
+- .gitignore
+- README.md
+- __pycache__/settings.cpython-312.pyc
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- because_postgres_is_not_playing_along/alembic.ini
+- because_postgres_is_not_playing_along/alembic/README
+- because_postgres_is_not_playing_along/alembic/__pycache__/env.cpython-39.pyc
+- because_postgres_is_not_playing_along/alembic/env.py
+- because_postgres_is_not_playing_along/alembic/script.py.mako
+- because_postgres_is_not_playing_along/ci.yml
+- because_postgres_is_not_playing_along/connect_db.py
+- because_postgres_is_not_playing_along/csv_ingestion.py
+- because_postgres_is_not_playing_along/csv_ingestion_2.py
+- because_postgres_is_not_playing_along/database.py
+- because_postgres_is_not_playing_along/docker-compose.yml
+- because_postgres_is_not_playing_along/schema.txt
+- because_postgres_is_not_playing_along/truDBapi.py
+- fcts/__pycache__/csv_fcts.cpython-312.pyc
+- fcts/__pycache__/mock_db.cpython-312.pyc
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- logs/hook_debug.log
+- logs/pytest.log
+- settings.py
+- tests/__pycache__/test_api.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_csv_fcts.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_mock_db.cpython-312-pytest-8.3.5.pyc
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_mock_db.py
+## Commit: 1cd08de06699ff01ac9de4f14873287197840d6a
+- **Message:** fix (FDapi): formatting and cleanliness
+- **Author:** yohannesaurus
+- **Changed Files:**
+- README.md
+- api/api.py
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- logs/black.log
+- logs/hook_debug.log
+- logs/ruff.log
+- models/models_entry.py
+- models/models_response.py
+- requirements.txt
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_mock_db.py
+## Commit: 0dabed4fcbc9a46a3cb56914218d2a4edf9f230e
+- **Message:** fix (FDapi): pulled yml created in git cus it didnt want to read mine, also rebase didnt work but merge commit did so .. ¯\_(._.)_/¯
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- logs/hook_debug.log
+## Commit: da662ea08d026676459924ef14a6de5f078c409a
+- **Message:** fix (FDapi): test yml failed
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .github/workflows/main.yml
+- api/__pycache__/api.cpython-312.pyc
+- fcts/__pycache__/csv_fcts.cpython-312.pyc
+- fcts/__pycache__/mock_db.cpython-312.pyc
+- fcts/csv_fcts.py
+- logs/hook_debug.log
+- logs/mypy.log
+- models/__pycache__/models_entry.cpython-312.pyc
+- models/__pycache__/models_response.cpython-312.pyc
+## Commit: 06373e08f5dabd4392f42c9fe121f8c345b76ae1
+- **Message:** fix (FDapi): test yml failed - mypy, pytest
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .github/workflows/main.yml
+- logs/hook_debug.log
+## Commit: aa5c11d8814d6be40e6cea56e86472b4f1f4886c
+- **Message:** fix (FDapi): formatting and yml updates
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .github/workflows/main.yml
+- api/api.py
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- logs/hook_debug.log
+- models/models_entry.py
+- models/models_response.py
+- settings.py
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_mock_db.py
+## Commit: b8b74826197f70abb445df1ed6073e8ca5229bc5
+- **Message:** feat (FDapi): change from mockDB to SQLite
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .github/workflows/main.yml
+- README.md
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- data/master_hotspots.csv
+- fcts/csv_fcts.py
+- fcts/load_csv.py
+- fcts/mock_db.py
+- fire_detections.db
+- logs/hook_debug.log
+- models/__pycache__/__init__.cpython-310.pyc
+- models/__pycache__/model_db.cpython-310.pyc
+- models/__pycache__/model_db.cpython-312.pyc
+- models/__pycache__/models_response.cpython-312.pyc
+- models/model_db.py
+- models/models_entry.py
+- models/models_response.py
+- requirements.txt
+## Commit: d550e9d9f2c722f1645fc3c05fc4bf86bd369c63
+- **Message:** fix (FDapi): rmv hook_debug from git
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- logs/hook_debug.log
+## Commit: 4b74ea6a9022082f047fa1fd77e330b01810426f
+- **Message:** fix: stop tracking logs/hook_debug.log
+- **Author:** yohannesaurus
+- **Changed Files:**
+- logs/hook_debug.log
+## Commit: be8e92d8620ba528dc6b687dc076c458c217f972
+- **Message:** fix (FDapi): commit after merge with sqllite-attempt branch
+- **Author:** yohannesaurus
+- **Changed Files:**
+- api/api.py
+- models/models_response.py
+## Commit: f1ad383ee60b6140e839f09902c777d283930e1b
+- **Message:** fix (FDapi - yml): edit yml to work, maybe?
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .github/workflows/main.yml
+- .gitignore
+## Commit: 2a0da73898f42c9951205f2177712cc19fc23521
+- **Message:** fix (FDapi): final reformatting, making things pretty, pytest, mypy updates
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .coverage
+- README.md
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- data/F002_L2__FIRE________2023-11-17T055836.143099Z_2023-12-12T130221.101063Z_9bc95636.csv
+- data/F002_L2__FIRE________2023-11-17T055836.143099Z_2023-12-12T151057.691215Z_7039926b.csv
+- data/F002_L2__FIRE________2024-03-30T122839.269024Z_2024-03-30T122944.494507Z_4a4d23df.csv
+- data/F002_L2__FIRE________2024-04-09T233420.471853Z_2024-04-09T233548.203776Z_8ad68c9d.csv
+- fcts/__pycache__/load_csv.cpython-312.pyc
+- fcts/load_csv.py
+- fire_detections.db
+- models/__pycache__/models_db.cpython-312.pyc
+- models/__pycache__/models_entry.cpython-312.pyc
+- models/__pycache__/models_response.cpython-312.pyc
+- models/model_db.py
+- models/models_db.py
+- models/models_entry.py
+- models/models_response.py
+- pytest.ini
+- tests/__init__.py
+- tests/__pycache__/__init__.cpython-312.pyc
+- tests/__pycache__/test_api.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_csv_fcts.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_load_csv.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_mock_db.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_models_entry.cpython-312-pytest-8.3.5.pyc
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_load_csv.py
+- tests/test_mock_db.py
+- tests/test_models_entry.py

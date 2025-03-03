@@ -1,0 +1,479 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.3, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\jseelig\Desktop\side_projects\OroraTech_1\OroraTech_Challenge_2025_JS
+plugins: anyio-4.8.0, cov-6.0.0
+collected 10 items
+
+tests\test_api.py ..FFFFF                                                [ 70%]
+tests\test_csv_fcts.py F                                                 [ 80%]
+tests\test_mock_db.py FF                                                 [100%]
+
+================================== FAILURES ===================================
+_____________________ test_get_hotspots_with_bounding_box _____________________
+
+setup_mock_db = None
+
+    def test_get_hotspots_with_bounding_box(setup_mock_db):
+        """Test /hotspots with bounding box parameters."""
+        response = client.get("/hotspots", params={
+            "min_lat": 52.0, "max_lat": 53.0,
+            "min_lon": 13.0, "max_lon": 14.0
+        })
+>       assert response.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+tests\test_api.py:51: AssertionError
+---------------------------- Captured stdout call -----------------------------
+SEts None None
+Qs POLYGON ((13 52, 13 53, 14 53, 14 52, 13 52))
+mdD dict_values([{'id': 1, 'latitude': -15.674402846981142, 'longitude': -66.7091829343921, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 13, 2, 21, 101063), 'geom': FeatGeometry(type='Point', coordinates=[-66.7091829343921, -15.674402846981142])}, {'id': 2, 'latitude': -15.863018963077717, 'longitude': -67.06814962938066, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 13, 2, 21, 101063), 'geom': FeatGeometry(type='Point', coordinates=[-67.06814962938066, -15.863018963077717])}, {'id': 3, 'latitude': -16.089861136026286, 'longitude': -68.24406111581744, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.24406111581744, -16.089861136026286])}, {'id': 4, 'latitude': -16.087782023719406, 'longitude': -68.25178785409388, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.25178785409388, -16.087782023719406])}, {'id': 5, 'latitude': -16.08144610389452, 'longitude': -68.24576125500823, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.24576125500823, -16.08144610389452])}, {'id': 6, 'latitude': -16.054123500393892, 'longitude': -68.25858861271368, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.25858861271368, -16.054123500393892])}, {'id': 7, 'latitude': -16.030959621822838, 'longitude': -68.25596541065828, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.25596541065828, -16.030959621822838])}, {'id': 8, 'latitude': -15.995228343589485, 'longitude': -68.27049547917221, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.27049547917221, -15.995228343589485])}, {'id': 9, 'latitude': -15.961578283990075, 'longitude': -68.27730250052059, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.27730250052059, -15.961578283990075])}, {'id': 10, 'latitude': -15.89428866213892, 'longitude': -68.29092338450755, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.29092338450755, -15.89428866213892])}, {'id': 11, 'latitude': -15.77252118084217, 'longitude': -68.04498912402109, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.04498912402109, -15.77252118084217])}, {'id': 12, 'latitude': -15.764112865663211, 'longitude': -68.04670537538452, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.04670537538452, -15.764112865663211])}, {'id': 13, 'latitude': -15.873435257543933, 'longitude': -68.02439811073599, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.02439811073599, -15.873435257543933])}, {'id': 14, 'latitude': -15.848204395586045, 'longitude': -68.02954503861618, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.02954503861618, -15.848204395586045])}, {'id': 15, 'latitude': -15.965963324438409, 'longitude': -68.00553062581268, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.00553062581268, -15.965963324438409])}, {'id': 16, 'latitude': -15.94072605882792, 'longitude': -68.0106756410139, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-68.0106756410139, -15.94072605882792])}, {'id': 17, 'latitude': -16.024861706956138, 'longitude': -67.99350654995217, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-67.99350654995217, -16.024861706956138])}, {'id': 18, 'latitude': -15.541204612461152, 'longitude': -66.74858901892621, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.74858901892621, -15.541204612461152])}, {'id': 19, 'latitude': -15.641990161893242, 'longitude': -66.70927914093228, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.70927914093228, -15.641990161893242])}, {'id': 20, 'latitude': -15.633588042155392, 'longitude': -66.7110610242139, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.7110610242139, -15.633588042155392])}, {'id': 21, 'latitude': -15.658794742159238, 'longitude': -66.70571412372139, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.70571412372139, -15.658794742159238])}, {'id': 22, 'latitude': -15.885715482722702, 'longitude': -66.65745227619924, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.65745227619924, -15.885715482722702])}, {'id': 23, 'latitude': -15.877306436378566, 'longitude': -66.65923665198703, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.65923665198703, -15.877306436378566])}, {'id': 24, 'latitude': -15.852089052059336, 'longitude': -66.6646120618652, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.6646120618652, -15.852089052059336])}, {'id': 25, 'latitude': -15.843683517100727, 'longitude': -66.66640307786282, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.66640307786282, -15.843683517100727])}, {'id': 26, 'latitude': -15.860494719713213, 'longitude': -66.66282051179643, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.66282051179643, -15.860494719713213])}, {'id': 27, 'latitude': -15.801657369095912, 'longitude': -66.67535290749055, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.67535290749055, -15.801657369095912])}, {'id': 28, 'latitude': -15.793252639539478, 'longitude': -66.67714189636662, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.67714189636662, -15.793252639539478])}, {'id': 29, 'latitude': -15.810062233982682, 'longitude': -66.67356372092213, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.67356372092213, -15.810062233982682])}, {'id': 30, 'latitude': -15.818467218791014, 'longitude': -66.67177417072679, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.67177417072679, -15.818467218791014])}, {'id': 31, 'latitude': -15.826872861995955, 'longitude': -66.6699840098627, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.6699840098627, -15.826872861995955])}, {'id': 32, 'latitude': -15.768039222338789, 'longitude': -66.68250617086831, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.68250617086831, -15.768039222338789])}, {'id': 33, 'latitude': -15.759635038495494, 'longitude': -66.6842936969102, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.6842936969102, -15.759635038495494])}, {'id': 34, 'latitude': -15.776443543268817, 'longitude': -66.68071844726009, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.68071844726009, -15.776443543268817])}, {'id': 35, 'latitude': -15.692405597737372, 'longitude': -66.6985798762882, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.6985798762882, -15.692405597737372])}, {'id': 36, 'latitude': -15.68400266744737, 'longitude': -66.70036394465531, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.70036394465531, -15.68400266744737])}, {'id': 37, 'latitude': -15.70080916294957, 'longitude': -66.69679537052026, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.69679537052026, -15.70080916294957])}, {'id': 38, 'latitude': -15.726019203828967, 'longitude': -66.69143971071357, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.69143971071357, -15.726019203828967])}, {'id': 39, 'latitude': -15.717615712013126, 'longitude': -66.69322524080721, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.69322524080721, -15.717615712013126])}, {'id': 40, 'latitude': -15.734422834926786, 'longitude': -66.6896538151161, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.6896538151161, -15.734422834926786])}, {'id': 41, 'latitude': -15.742826589900144, 'longitude': -66.68786738807457, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.68786738807457, -15.742826589900144])}, {'id': 42, 'latitude': -15.902536736606756, 'longitude': -66.65389523265765, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.65389523265765, -15.902536736606756])}, {'id': 43, 'latitude': -15.917928954045486, 'longitude': -66.67023056942554, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.67023056942554, -15.917928954045486])}, {'id': 44, 'latitude': -15.92776980678417, 'longitude': -66.64855673931007, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.64855673931007, -15.92776980678417])}, {'id': 45, 'latitude': -15.918006714520342, 'longitude': -66.5590775077477, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-66.5590775077477, -15.918006714520342])}, {'id': 46, 'latitude': -15.862583876704987, 'longitude': -67.06749852208257, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-67.06749852208257, -15.862583876704987])}, {'id': 47, 'latitude': -15.881727677105122, 'longitude': -67.09614724319796, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-67.09614724319796, -15.881727677105122])}, {'id': 48, 'latitude': -15.94355979669516, 'longitude': -67.42041151186764, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-67.42041151186764, -15.94355979669516])}, {'id': 49, 'latitude': -15.887057043537489, 'longitude': -67.50241013167792, 'timestamp_start': datetime.datetime(2023, 11, 17, 5, 58, 36, 143099), 'timestamp_end': datetime.datetime(2023, 12, 12, 15, 10, 57, 691215), 'geom': FeatGeometry(type='Point', coordinates=[-67.50241013167792, -15.887057043537489])}, {'id': 50, 'latitude': 40.86641704624816, 'longitude': 19.57467491126978, 'timestamp_start': datetime.datetime(2024, 3, 30, 12, 28, 39, 269024), 'timestamp_end': datetime.datetime(2024, 3, 30, 12, 29, 44, 494507), 'geom': FeatGeometry(type='Point', coordinates=[19.57467491126978, 40.86641704624816])}, {'id': 51, 'latitude': 40.86685102696973, 'longitude': 19.574485125477832, 'timestamp_start': datetime.datetime(2024, 3, 30, 12, 28, 39, 269024), 'timestamp_end': datetime.datetime(2024, 3, 30, 12, 29, 44, 494507), 'geom': FeatGeometry(type='Point', coordinates=[19.574485125477832, 40.86685102696973])}, {'id': 52, 'latitude': 40.86513532814923, 'longitude': 19.57422581848916, 'timestamp_start': datetime.datetime(2024, 3, 30, 12, 28, 39, 269024), 'timestamp_end': datetime.datetime(2024, 3, 30, 12, 29, 44, 494507), 'geom': FeatGeometry(type='Point', coordinates=[19.57422581848916, 40.86513532814923])}, {'id': 53, 'latitude': 57.53285001327376, 'longitude': 15.331474327296839, 'timestamp_start': datetime.datetime(2024, 4, 9, 23, 34, 20, 471853), 'timestamp_end': datetime.datetime(2024, 4, 9, 23, 35, 48, 203776), 'geom': FeatGeometry(type='Point', coordinates=[15.331474327296839, 57.53285001327376])}, {'id': 54, 'latitude': 57.39109309412119, 'longitude': 14.992442853127082, 'timestamp_start': datetime.datetime(2024, 4, 9, 23, 34, 20, 471853), 'timestamp_end': datetime.datetime(2024, 4, 9, 23, 35, 48, 203776), 'geom': FeatGeometry(type='Point', coordinates=[14.992442853127082, 57.39109309412119])}])
+________________________ test_get_hotspot_by_id_valid _________________________
+
+setup_mock_db = None
+
+    def test_get_hotspot_by_id_valid(setup_mock_db):
+        """Test /hotspots/{id} with a valid ID."""
+>       response = client.get("/hotspots/1")
+
+tests\test_api.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:458: in get
+    return super().get(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:430: in request
+    return super().request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:339: in handle_request
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:336: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\applications.py:112: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:187: in __call__
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:735: in app
+    await route.handle(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:288: in handle
+    await self.app(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:73: in app
+    response = await f(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:301: in app
+    raw_response = await run_endpoint_function(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:212: in run_endpoint_function
+    return await dependant.call(**values)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+id = 1
+
+    @app.get("/hotspots/{id}", response_model=IDGeoJsonResponse)
+    async def get_hotspot_by_id(id: int) -> IDGeoJsonResponse:
+        """Retrieve a fire detection by ID."""
+>       detection: Optional[Dict[str, Any]] = mock_db.get_hotspot(id)
+E       NameError: name 'mock_db' is not defined
+
+api\api.py:179: NameError
+_______________________ test_get_hotspot_by_id_invalid ________________________
+
+    def test_get_hotspot_by_id_invalid():
+        """Test /hotspots/{id} with an invalid ID."""
+>       response = client.get("/hotspots/999")
+
+tests\test_api.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:458: in get
+    return super().get(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:430: in request
+    return super().request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:339: in handle_request
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:336: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\applications.py:112: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:187: in __call__
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:735: in app
+    await route.handle(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:288: in handle
+    await self.app(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:73: in app
+    response = await f(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:301: in app
+    raw_response = await run_endpoint_function(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:212: in run_endpoint_function
+    return await dependant.call(**values)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+id = 999
+
+    @app.get("/hotspots/{id}", response_model=IDGeoJsonResponse)
+    async def get_hotspot_by_id(id: int) -> IDGeoJsonResponse:
+        """Retrieve a fire detection by ID."""
+>       detection: Optional[Dict[str, Any]] = mock_db.get_hotspot(id)
+E       NameError: name 'mock_db' is not defined
+
+api\api.py:179: NameError
+____________________________ test_add_new_hotspot _____________________________
+
+    def test_add_new_hotspot():
+        """Test adding a new hotspot."""
+>       response = client.post("/hotspots/add", params={
+            "latitude": 50.0,
+            "longitude": 10.0,
+            "timestamp_start": datetime.utcnow().isoformat(),
+            "timestamp_end": datetime.utcnow().isoformat()
+        })
+
+tests\test_api.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:531: in post
+    return super().post(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1144: in post
+    return self.request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:430: in request
+    return super().request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:339: in handle_request
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:336: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\applications.py:112: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:187: in __call__
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:735: in app
+    await route.handle(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:288: in handle
+    await self.app(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:73: in app
+    response = await f(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:301: in app
+    raw_response = await run_endpoint_function(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:212: in run_endpoint_function
+    return await dependant.call(**values)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+latitude = 50.0, longitude = 10.0
+timestamp_start = datetime.datetime(2025, 3, 2, 20, 0, 16, 961703)
+timestamp_end = datetime.datetime(2025, 3, 2, 20, 0, 16, 961703)
+
+    @app.post("/hotspots/add", response_model=Dict[str, str])
+    async def add_new_hotspot(
+        latitude: float,
+        longitude: float,
+        timestamp_start: datetime,
+        timestamp_end: datetime,
+    ) -> Dict[str, str]:
+        """Endpoint to add a fire detection"""
+>       new_id: int = mock_db.get_next_hotspot_id()
+E       NameError: name 'mock_db' is not defined
+
+api\api.py:201: NameError
+_____________________________ test_delete_hotspot _____________________________
+
+setup_mock_db = None
+
+    def test_delete_hotspot(setup_mock_db):
+        """Test deleting a hotspot."""
+>       response = client.delete("/hotspots/remove", params={"id": 1})
+
+tests\test_api.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:620: in delete
+    return super().delete(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1251: in delete
+    return self.request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:430: in request
+    return super().request(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:339: in handle_request
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\testclient.py:336: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\applications.py:112: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:187: in __call__
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:735: in app
+    await route.handle(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:288: in handle
+    await self.app(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py:73: in app
+    response = await f(request)
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:301: in app
+    raw_response = await run_endpoint_function(
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py:212: in run_endpoint_function
+    return await dependant.call(**values)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+id = 1
+
+    @app.delete("/hotspots/remove", response_model=Dict[str, str])
+    async def delete_hotspot_by_id(
+        id: int = Query(..., description="ID of the hotspot to remove"),
+    ) -> Dict[str, str]:
+        """Delete a fire detection by ID."""
+>       mock_db.delete_hotspot(id)
+E       NameError: name 'mock_db' is not defined
+
+api\api.py:217: NameError
+_________________________ test_write_and_read_mockdb __________________________
+
+sample_data = {1: {'geom': FeatGeometry(type='Point', coordinates=[56.78, 12.34]), 'id': 1, 'latitude': 12.34, 'longitude': 56.78, ...}}
+tmp_path = WindowsPath('C:/Users/jseelig/AppData/Local/Temp/pytest-of-JSeelig/pytest-0/test_write_and_read_mockdb0')
+
+    def test_write_and_read_mockdb(sample_data, tmp_path):
+        mock_csv = tmp_path / "mock_master.csv"
+        os.environ["MASTER_CSV"] = str(mock_csv)  # Override settings for testing
+    
+>       write_mockdb_to_mastercsv(sample_data)
+
+tests\test_csv_fcts.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {1: {'geom': FeatGeometry(type='Point', coordinates=[56.78, 12.34]), 'id': 1, 'latitude': 12.34, 'longitude': 56.78, ...}}
+
+    def write_mockdb_to_mastercsv(data: Dict) -> None:
+        """Writes mock_db data to a master CSV file."""
+        print("Importing DB from master csv")
+>       with open(settings.MASTER_CSV, mode="w", newline="") as f:
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\jseelig\\Desktop\\side_projects\\OroraTech_1\\OroraTech_Challenge_2025_JS\\data\\master_hotspots.csv'
+
+fcts\csv_fcts.py:59: PermissionError
+---------------------------- Captured stdout call -----------------------------
+Importing DB from master csv
+__________________________ test_add_and_get_hotspot ___________________________
+
+    def test_add_and_get_hotspot():
+        id_ = get_next_hotspot_id()
+>       add_hotspot(id_, 10.0, 20.0, "2025-03-02 12:00:00", "2025-03-02 14:00:00")
+
+tests\test_mock_db.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+id = 1, latitude = 10.0, longitude = 20.0
+timestamp_start = '2025-03-02 12:00:00', timestamp_end = '2025-03-02 14:00:00'
+
+    def add_hotspot(
+        id: int, latitude: float, longitude: float, timestamp_start: str, timestamp_end: str
+    ) -> None:
+        """Appends a new hotspot entry to the CSV file."""
+        hotspot = HotspotEntry(
+            id=id,
+            latitude=latitude,
+            longitude=longitude,
+            timestamp_start=datetime.strptime(timestamp_start, "%Y-%m-%d %H:%M:%S"),
+            timestamp_end=datetime.strptime(timestamp_end, "%Y-%m-%d %H:%M:%S"),
+            geom=Point(longitude, latitude),
+        )
+        data[id] = hotspot  # Add to in-memory data store
+    
+        # Append to CSV
+>       with open(settings.MASTER_CSV, mode="a", newline="") as f:
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\jseelig\\Desktop\\side_projects\\OroraTech_1\\OroraTech_Challenge_2025_JS\\data\\master_hotspots.csv'
+
+fcts\mock_db.py:50: PermissionError
+_____________________________ test_delete_hotspot _____________________________
+
+    def test_delete_hotspot():
+        id_ = get_next_hotspot_id()
+>       add_hotspot(id_, 30.0, 40.0, "2025-03-02 10:00:00", "2025-03-02 12:00:00")
+
+tests\test_mock_db.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+id = 2, latitude = 30.0, longitude = 40.0
+timestamp_start = '2025-03-02 10:00:00', timestamp_end = '2025-03-02 12:00:00'
+
+    def add_hotspot(
+        id: int, latitude: float, longitude: float, timestamp_start: str, timestamp_end: str
+    ) -> None:
+        """Appends a new hotspot entry to the CSV file."""
+        hotspot = HotspotEntry(
+            id=id,
+            latitude=latitude,
+            longitude=longitude,
+            timestamp_start=datetime.strptime(timestamp_start, "%Y-%m-%d %H:%M:%S"),
+            timestamp_end=datetime.strptime(timestamp_end, "%Y-%m-%d %H:%M:%S"),
+            geom=Point(longitude, latitude),
+        )
+        data[id] = hotspot  # Add to in-memory data store
+    
+        # Append to CSV
+>       with open(settings.MASTER_CSV, mode="a", newline="") as f:
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\jseelig\\Desktop\\side_projects\\OroraTech_1\\OroraTech_Challenge_2025_JS\\data\\master_hotspots.csv'
+
+fcts\mock_db.py:50: PermissionError
+============================== warnings summary ===============================
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\pydantic\_internal\_config.py:295
+  C:\Users\jseelig\AppData\Local\Programs\Python\Python312\Lib\site-packages\pydantic\_internal\_config.py:295: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.10/migration/
+    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)
+
+tests/test_api.py::test_add_new_hotspot
+  C:\Users\jseelig\Desktop\side_projects\OroraTech_1\OroraTech_Challenge_2025_JS\tests\test_api.py:70: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "timestamp_start": datetime.utcnow().isoformat(),
+
+tests/test_api.py::test_add_new_hotspot
+  C:\Users\jseelig\Desktop\side_projects\OroraTech_1\OroraTech_Challenge_2025_JS\tests\test_api.py:71: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "timestamp_end": datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform win32, python 3.12.3-final-0 -----------
+Coverage HTML written to dir logs/coverage_html
+
+=========================== short test summary info ===========================
+FAILED tests/test_api.py::test_get_hotspots_with_bounding_box - assert 404 ==...
+FAILED tests/test_api.py::test_get_hotspot_by_id_valid - NameError: name 'moc...
+FAILED tests/test_api.py::test_get_hotspot_by_id_invalid - NameError: name 'm...
+FAILED tests/test_api.py::test_add_new_hotspot - NameError: name 'mock_db' is...
+FAILED tests/test_api.py::test_delete_hotspot - NameError: name 'mock_db' is ...
+FAILED tests/test_csv_fcts.py::test_write_and_read_mockdb - PermissionError: ...
+FAILED tests/test_mock_db.py::test_add_and_get_hotspot - PermissionError: [Er...
+FAILED tests/test_mock_db.py::test_delete_hotspot - PermissionError: [Errno 1...
+=================== 8 failed, 2 passed, 3 warnings in 3.54s ===================

@@ -1,0 +1,72 @@
+api\api.py:181:43: F821 Undefined name `mock_db`
+    |
+179 | async def get_hotspot_by_id(id: int) -> IDGeoJsonResponse:
+180 |     """Retrieve a fire detection by ID."""
+181 |     detection: Optional[Dict[str, Any]] = mock_db.get_hotspot(id)
+    |                                           ^^^^^^^ F821
+182 |     result = (
+183 |         mock_db.get_hotspot(id).model_dump()
+    |
+
+api\api.py:182:5: F841 Local variable `result` is assigned to but never used
+    |
+180 |     """Retrieve a fire detection by ID."""
+181 |     detection: Optional[Dict[str, Any]] = mock_db.get_hotspot(id)
+182 |     result = (
+    |     ^^^^^^ F841
+183 |         mock_db.get_hotspot(id).model_dump()
+184 |         if mock_db.get_hotspot(id) is not None
+    |
+    = help: Remove assignment to unused variable `result`
+
+api\api.py:183:9: F821 Undefined name `mock_db`
+    |
+181 |     detection: Optional[Dict[str, Any]] = mock_db.get_hotspot(id)
+182 |     result = (
+183 |         mock_db.get_hotspot(id).model_dump()
+    |         ^^^^^^^ F821
+184 |         if mock_db.get_hotspot(id) is not None
+185 |         else None
+    |
+
+api\api.py:184:12: F821 Undefined name `mock_db`
+    |
+182 |     result = (
+183 |         mock_db.get_hotspot(id).model_dump()
+184 |         if mock_db.get_hotspot(id) is not None
+    |            ^^^^^^^ F821
+185 |         else None
+186 |     )  # Convert to dict if not None
+    |
+
+api\api.py:205:19: F821 Undefined name `mock_db`
+    |
+203 | ) -> Dict[str, str]:
+204 |     """Endpoint to add a fire detection"""
+205 |     new_id: int = mock_db.get_next_hotspot_id()
+    |                   ^^^^^^^ F821
+206 |     mock_db.add_hotspot(
+207 |         new_id,
+    |
+
+api\api.py:206:5: F821 Undefined name `mock_db`
+    |
+204 |     """Endpoint to add a fire detection"""
+205 |     new_id: int = mock_db.get_next_hotspot_id()
+206 |     mock_db.add_hotspot(
+    |     ^^^^^^^ F821
+207 |         new_id,
+208 |         latitude,
+    |
+
+api\api.py:221:5: F821 Undefined name `mock_db`
+    |
+219 | ) -> Dict[str, str]:
+220 |     """Delete a fire detection by ID."""
+221 |     mock_db.delete_hotspot(id)
+    |     ^^^^^^^ F821
+222 |     return {"message": f"Hotspot with ID {id} deleted successfully"}
+    |
+
+Found 18 errors (11 fixed, 7 remaining).
+No fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).
