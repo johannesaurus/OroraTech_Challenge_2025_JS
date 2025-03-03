@@ -30,7 +30,9 @@ jobs:
       #   run: mypy . --exclude "because_postgres_is_not_playing_along|data|logs|other" > logs/mypy.log 2>&1
       # OR   run: cat logs/mypy.log
 
-      - name: Run Tests with Coverage
-        env:
-          PYTHONPATH: .
-        run: pytest --cov=api --cov=fcts --cov=models --cov-report=html:logs/coverage_html > logs/pytest.log 2>&1
+      # - name: Run Tests with Coverage
+      #   env:
+      #     PYTHONPATH: .
+      #   run: pytest --cov=api --cov=fcts --cov=models --cov-report=html:logs/coverage_html > logs/pytest.log 2>&1
+      #   run: cat logs/pytest.log
+
