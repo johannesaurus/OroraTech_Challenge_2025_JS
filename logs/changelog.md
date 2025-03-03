@@ -158,3 +158,9 @@
 - logs/mypy.log
 - models/__pycache__/models_entry.cpython-312.pyc
 - models/__pycache__/models_response.cpython-312.pyc
+## Commit: 06373e08f5dabd4392f42c9fe121f8c345b76ae1
+- **Message:** fix (FDapi): test yml failed - mypy, pytest
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .github/workflows/main.yml
+- logs/hook_debug.log
