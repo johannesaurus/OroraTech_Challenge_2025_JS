@@ -148,6 +148,7 @@ Format with black:
 ```sh
 black . > logs/black.log 2>&1
 ```
+
 Lint with Ruff:
 ```sh
 ruff check . --fix > logs/ruff.log 2>&1
@@ -163,6 +164,7 @@ Run PyTest + create log and html:
 set PYTHONPATH=.
 pytest --cov=api --cov=fcts --cov=models --cov-report=html:logs/coverage_html > logs/pytest.log 2>&1
 ```
+
 DB: creates fire_detections.db
 ```sh
 python models/model_db.py (inits db)

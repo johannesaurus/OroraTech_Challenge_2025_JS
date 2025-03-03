@@ -33,12 +33,14 @@ class FeatGeometry(BaseModel):
     type: str
     coordinates: List[float]
 
+
 class Feature(BaseModel):
     """Features for List part of the response"""
 
     type: str
     geometry: FeatGeometry
     properties: Properties
+
 
 class SpatialGeoJsonResponse(BaseModel):
     """Base Model for typed response for search-by-Spatial"""

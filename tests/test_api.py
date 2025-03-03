@@ -1,90 +1,100 @@
-"""
-Created on 2025.03.02
-
-@Title: OroraTech Wildfire Tech Challenge - Test API
-@author: jseelig
-
-This script contains tests fcts for api
-"""
-
 import pytest
 from fastapi.testclient import TestClient
-from api.api import app
-import fcts.mock_db as mock_db
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from datetime import datetime
+import json
+from models.models_db import Base, FireDetection
+from api.api import app, get_db
+
+# Create a test database in memory
+test_engine = create_engine("sqlite:///:memory:")
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
+
+# Setup test database
+Base.metadata.create_all(bind=test_engine)
+
+@pytest.fixture
+def db_session():
+    session = TestingSessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
+
+# Override the dependency
+def override_get_db():
+    session = TestingSessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
+
+app.dependency_overrides[get_db] = override_get_db
 
 client = TestClient(app)
 
-@pytest.fixture
-def setup_mock_db():
-    """Set up a mock database before each test."""
-    mock_db.data = {
-        1: {
-            "id": 1,
-            "latitude": 52.52,
-            "longitude": 13.405,
-            "timestamp_start": "2025-02-27T12:00:00",
-            "timestamp_end": "2025-02-27T14:00:00",
-            "geom": {"type": "Point", "coordinates": [13.405, 52.52]},
-        }
-    }
-    yield
-    mock_db.data.clear()
-
-
 def test_read_root():
-    """Test the root endpoint."""
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "In Root"}
 
-
-def test_get_hotspots_no_params():
-    """Test /hotspots without parameters should return 400."""
-    response = client.get("/hotspots")
-    assert response.status_code == 400
-
-
-def test_get_hotspots_with_bounding_box(setup_mock_db):
-    """Test /hotspots with bounding box parameters."""
-    response = client.get(
-        "/hotspots",
-        params={"min_lat": 52.0, "max_lat": 53.0, "min_lon": 13.0, "max_lon": 14.0},
-    )
-    assert response.status_code == 200
-    assert "features" in response.json()
-
-
-def test_get_hotspot_by_id_valid(setup_mock_db):
-    """Test /hotspots/{id} with a valid ID."""
-    response = client.get("/hotspots/1")
-    assert response.status_code == 200
-    assert response.json()["geometry"]["type"] == "Point"
-
-
-def test_get_hotspot_by_id_invalid():
-    """Test /hotspots/{id} with an invalid ID."""
-    response = client.get("/hotspots/999")
-    assert response.status_code == 404
-
-
-def test_add_new_hotspot():
-    """Test adding a new hotspot."""
+def test_add_hotspot(db_session):
     response = client.post(
         "/hotspots/add",
         params={
-            "latitude": 50.0,
-            "longitude": 10.0,
-            "timestamp_start": datetime(2023, 11, 16, 19, 13, 14, 364950).isoformat(),
-            "timestamp_end": datetime(2023, 11, 20, 19, 13, 14, 364950).isoformat()
+            "latitude": 34.5,
+            "longitude": -117.3,
+            "timestamp_start": datetime.utcnow().isoformat(),
+            "timestamp_end": datetime.utcnow().isoformat(),
         },
     )
     assert response.status_code == 200
     assert "Hotspot with ID" in response.json()["message"]
 
+def test_get_hotspots_empty():
+    response = client.get("/hotspots")
+    assert response.status_code == 404
+    assert response.json()["detail"] == "No hotspots found"
 
-def test_delete_hotspot(setup_mock_db):
-    """Test deleting a hotspot."""
-    response = client.delete("/hotspots/remove", params={"id": 1})
+def test_delete_hotspot_not_found():
+    response = client.delete("/hotspots/remove", params={"id": 999})
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Hotspot not found"
+
+def test_validate_polygon_invalid():
+    invalid_polygons = [
+        "not a json",
+        json.dumps({"wrong_key": []}),
+        json.dumps({"coordinates": []}),
+    ]
+    for polygon in invalid_polygons:
+        response = client.get("/hotspots", params={"polygon": polygon})
+        assert response.status_code == 400
+        assert "Invalid polygon format" in response.json()["detail"]
+
+def test_get_hotspot_by_id_not_found():
+    response = client.get("/hotspots/999")
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Hotspot not found"
+
+def test_get_hotspot_by_id(db_session):
+    hotspot = FireDetection(latitude=34.5, longitude=-117.3, timestamp_start=datetime.utcnow(), timestamp_end=datetime.utcnow())
+    db_session.add(hotspot)
+    db_session.commit()
+    db_session.refresh(hotspot)
+
+    response = client.get(f"/hotspots/{hotspot.id}")
     assert response.status_code == 200
-    assert "Hotspot with ID 1 deleted successfully" in response.json()["message"]
+    assert response.json()["geometry"]["coordinates"] == [hotspot.longitude, hotspot.latitude]
+
+def test_delete_hotspot_success(db_session):
+    hotspot = FireDetection(latitude=34.5, longitude=-117.3, timestamp_start=datetime.utcnow(), timestamp_end=datetime.utcnow())
+    db_session.add(hotspot)
+    db_session.commit()
+    db_session.refresh(hotspot)
+
+    response = client.delete("/hotspots/remove", params={"id": hotspot.id})
+    assert response.status_code == 200
+    assert response.json()["message"] == f"Hotspot with ID {hotspot.id} deleted successfully"
+    
