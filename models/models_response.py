@@ -33,7 +33,6 @@ class FeatGeometry(BaseModel):
     type: str
     coordinates: List[float]
 
-
 class Feature(BaseModel):
     """Features for List part of the response"""
 

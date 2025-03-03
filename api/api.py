@@ -1,6 +1,6 @@
 """
 Created on 2025.02.27
-Edited on 2025.03.03
+Edited on 2025.03.03 from mockDB to SQLite
 
 @Title: OroraTech Wildfire Tech Challenge - api
 @author: jseelig
