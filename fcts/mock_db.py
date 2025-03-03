@@ -1,5 +1,5 @@
 """
-Created on 27.02.2025
+Created on 2025.02.27
 
 @Title: OroraTech Wildfire Tech Challenge - mockDB
 @author: jseelig

@@ -1,5 +1,5 @@
 """
-Created on 02.03.2025
+Created on 2025.03.02
 
 @Title: OroraTech Wildfire Tech Challenge - models
 @author: jseelig

@@ -1,3 +1,12 @@
+"""
+Created on 2025.03.02
+
+@Title: OroraTech Wildfire Tech Challenge - Test csv fcts
+@author: jseelig
+
+This script contains tests fcts for csv_fcts
+"""
+
 import pytest
 import os
 from fcts.csv_fcts import (

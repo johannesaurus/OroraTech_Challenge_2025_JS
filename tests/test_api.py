@@ -1,10 +1,10 @@
 """
-Created on 27.02.2025
+Created on 2025.03.02
 
-@Title: OroraTech Wildfire Tech Challenge - csv fcts
+@Title: OroraTech Wildfire Tech Challenge - Test API
 @author: jseelig
 
-This script contains fcts for csv (mockDB) handling
+This script contains tests fcts for api
 """
 
 import pytest
@@ -14,7 +14,6 @@ import fcts.mock_db as mock_db
 from datetime import datetime
 
 client = TestClient(app)
-
 
 @pytest.fixture
 def setup_mock_db():
@@ -76,8 +75,8 @@ def test_add_new_hotspot():
         params={
             "latitude": 50.0,
             "longitude": 10.0,
-            "timestamp_start": datetime.utcnow().isoformat(),
-            "timestamp_end": datetime.utcnow().isoformat(),
+            "timestamp_start": datetime(2023, 11, 16, 19, 13, 14, 364950).isoformat(),
+            "timestamp_end": datetime(2023, 11, 20, 19, 13, 14, 364950).isoformat()
         },
     )
     assert response.status_code == 200

@@ -1,3 +1,12 @@
+"""
+Created on 2025.03.02
+
+@Title: OroraTech Wildfire Tech Challenge - mockDB
+@author: jseelig
+
+This script contains tests fcts for mockDB
+"""
+
 from fcts.mock_db import get_hotspot, add_hotspot, delete_hotspot, get_next_hotspot_id
 from shapely.geometry import Point
 from datetime import datetime
