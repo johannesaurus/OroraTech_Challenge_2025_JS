@@ -212,3 +212,9 @@
 - **Author:** yohannesaurus
 - **Changed Files:**
 - logs/hook_debug.log
+## Commit: be8e92d8620ba528dc6b687dc076c458c217f972
+- **Message:** fix (FDapi): commit after merge with sqllite-attempt branch
+- **Author:** yohannesaurus
+- **Changed Files:**
+- api/api.py
+- models/models_response.py
