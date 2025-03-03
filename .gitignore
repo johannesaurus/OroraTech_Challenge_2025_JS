@@ -3,3 +3,4 @@
 .pytest_cache/
 other/
 logs/hook_debug.log
+data/

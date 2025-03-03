@@ -19,6 +19,10 @@ jobs:
       
       # - name: Install dependencies
       #   run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install black
+          pip install ruff
 
       - name: Run Black (code formatter)
         run: black . #> logs/black.log 2>&1
