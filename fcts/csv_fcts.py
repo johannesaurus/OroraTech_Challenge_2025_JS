@@ -24,15 +24,22 @@ def read_csv_files(directory: str) -> Dict:
     for filename in os.listdir(directory):
         if filename.endswith(".csv"):
             parts = filename.split("_")
-            timestamp_start = parts[11]
-            timestamp_end = parts[12]
+            time_ctr = 0
+            for i,part in enumerate(parts):
+                if part.endswith('Z') and '.' in part:
+                    time_ctr = i
+                    break
+            if time_ctr is not None and time_ctr + 1 < len(parts):
+                timestamp_start = parts[time_ctr]
+                timestamp_end = parts[time_ctr+1]
+            else:
+                print(f"Skipping file (invalid format): {filename}")
             filepath = os.path.join(directory, filename)
             with open(filepath, mode="r") as f:
                 reader = csv.DictReader(f)
                 for row in reader:
                     latitude = float(row["lat"])
                     longitude = float(row["lon"])
-                    # geom = FeatGeometry(type="Point", coordinates=[longitude, latitude])
                     geom = FeatGeometry(type="Point", coordinates=[longitude, latitude])
 
                     data[id_counter] = {
