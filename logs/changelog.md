@@ -201,3 +201,9 @@
 - models/models_entry.py
 - models/models_response.py
 - requirements.txt
+## Commit: d550e9d9f2c722f1645fc3c05fc4bf86bd369c63
+- **Message:** fix (FDapi): rmv hook_debug from git
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .gitignore
+- logs/hook_debug.log
