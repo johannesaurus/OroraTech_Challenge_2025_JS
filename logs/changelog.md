@@ -224,3 +224,38 @@
 - **Changed Files:**
 - .github/workflows/main.yml
 - .gitignore
+## Commit: 2a0da73898f42c9951205f2177712cc19fc23521
+- **Message:** fix (FDapi): final reformatting, making things pretty, pytest, mypy updates
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .coverage
+- README.md
+- api/__pycache__/api.cpython-312.pyc
+- api/api.py
+- data/F002_L2__FIRE________2023-11-17T055836.143099Z_2023-12-12T130221.101063Z_9bc95636.csv
+- data/F002_L2__FIRE________2023-11-17T055836.143099Z_2023-12-12T151057.691215Z_7039926b.csv
+- data/F002_L2__FIRE________2024-03-30T122839.269024Z_2024-03-30T122944.494507Z_4a4d23df.csv
+- data/F002_L2__FIRE________2024-04-09T233420.471853Z_2024-04-09T233548.203776Z_8ad68c9d.csv
+- fcts/__pycache__/load_csv.cpython-312.pyc
+- fcts/load_csv.py
+- fire_detections.db
+- models/__pycache__/models_db.cpython-312.pyc
+- models/__pycache__/models_entry.cpython-312.pyc
+- models/__pycache__/models_response.cpython-312.pyc
+- models/model_db.py
+- models/models_db.py
+- models/models_entry.py
+- models/models_response.py
+- pytest.ini
+- tests/__init__.py
+- tests/__pycache__/__init__.cpython-312.pyc
+- tests/__pycache__/test_api.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_csv_fcts.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_load_csv.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_mock_db.cpython-312-pytest-8.3.5.pyc
+- tests/__pycache__/test_models_entry.cpython-312-pytest-8.3.5.pyc
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_load_csv.py
+- tests/test_mock_db.py
+- tests/test_models_entry.py
