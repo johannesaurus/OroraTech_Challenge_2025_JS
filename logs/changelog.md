@@ -164,3 +164,18 @@
 - **Changed Files:**
 - .github/workflows/main.yml
 - logs/hook_debug.log
+## Commit: aa5c11d8814d6be40e6cea56e86472b4f1f4886c
+- **Message:** fix (FDapi): formatting and yml updates
+- **Author:** yohannesaurus
+- **Changed Files:**
+- .github/workflows/main.yml
+- api/api.py
+- fcts/csv_fcts.py
+- fcts/mock_db.py
+- logs/hook_debug.log
+- models/models_entry.py
+- models/models_response.py
+- settings.py
+- tests/test_api.py
+- tests/test_csv_fcts.py
+- tests/test_mock_db.py
